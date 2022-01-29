@@ -50,7 +50,7 @@ public class BattleManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            StartBattle(new string[] { "Minotaur", "Minotaur", "Minotaur", "Minotaur" });
+            StartBattle(new string[] { "Minotaur", "Dragon", "Minotaur", "Minotaur" });
         }
 
         if (Input.GetKeyDown(KeyCode.N))
