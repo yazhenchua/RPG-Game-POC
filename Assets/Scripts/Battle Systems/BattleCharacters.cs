@@ -6,6 +6,7 @@ public class BattleCharacters : MonoBehaviour
 {
     [SerializeField] bool isPlayer;
     [SerializeField] string[] attacksAvailable;
+    [SerializeField] public Animator charactersAnimator;
 
     public string characterName;
     public int currentHP, maxHP, currentMana, maxMana, dexterity, defence, wpnPower, armorDefence;
@@ -16,7 +17,7 @@ public class BattleCharacters : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

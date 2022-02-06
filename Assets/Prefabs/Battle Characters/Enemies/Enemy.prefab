@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5069078436509875133}
   - component: {fileID: 5069078436509875130}
   - component: {fileID: 5069078436509875131}
+  - component: {fileID: 1984629290441396486}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5069078436509875132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 235.04503}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,6 +48,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -99,6 +101,7 @@ MonoBehaviour:
   - Blue Fireball
   - Slash
   - Water Blade
+  charactersAnimator: {fileID: 1984629290441396486}
   characterName: Minotaur
   currentHP: 200
   maxHP: 200
@@ -111,3 +114,22 @@ MonoBehaviour:
   isDead: 0
   deathParticles: {fileID: 2740219943067552209, guid: 2adab11bd51832f4cbf8da9de4d2d6b9,
     type: 3}
+--- !u!95 &1984629290441396486
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5069078436509875132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e133202b8cacf3c4c9e495de29c9160c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

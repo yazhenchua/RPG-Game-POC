@@ -164,6 +164,7 @@ public class BattleManager : MonoBehaviour
     {
         isBattleActive = true;
         GameManager.instance.battleIsActive = true;
+        //BattleCharacters.instance.charactersAnimator.Play("Minotaur_Idling");
 
         transform.position = new Vector3(
             Camera.main.transform.position.x,
@@ -266,7 +267,7 @@ public class BattleManager : MonoBehaviour
         {
             if (battleMovesList[i].moveName == activeCharacters[currentTurn].AttackMovesAvailable()[selectedAttack])
             {
-
+                //Todo: Add character animation into the attacks
                 movePower = GettingMovePowerAndEffectInstantiation(selectedPlayerToAttack, i);
             }
         }
