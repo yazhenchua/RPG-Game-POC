@@ -16,6 +16,12 @@ public class BattleCharacters : MonoBehaviour
     public ParticleSystem deathParticles;
     private Animator anim;
 
+    Shooter shooter;
+    private void Awake()
+    {
+        shooter = GetComponent<Shooter>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +42,19 @@ public class BattleCharacters : MonoBehaviour
             anim.SetBool("Attack1", true);
             anim.SetBool("Idling", false);
             
+            if(shooter != null)
+            {
+                shooter.isFiring = true;
+            }
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             anim.SetBool("Attack1", false);
             anim.SetBool("Idling", true);
-            
+            if (shooter != null)
+            {
+                shooter.isFiring = false;
+            }
         }
     }
 
