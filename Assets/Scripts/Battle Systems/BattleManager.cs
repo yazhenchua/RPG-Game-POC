@@ -36,12 +36,16 @@ public class BattleManager : MonoBehaviour
     public GameObject magicPanel;
     [SerializeField] BattleMagicButtons[] magicButtons;
 
+    public Animator anim;
+
     public BattleNotifications battleNotice;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
+        anim=gameObject.GetComponent<Animator>();
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -56,6 +60,10 @@ public class BattleManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             NextTurn();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            
         }
         CheckPlayerButtonHolder();
     }
@@ -183,6 +191,7 @@ public class BattleManager : MonoBehaviour
         waitingForTurn = true;
         UpdateBattle();
         UpdatePlayerStats();
+        anim.SetTrigger("Attack1");
     }
 
     private void UpdateBattle()
@@ -285,6 +294,8 @@ public class BattleManager : MonoBehaviour
         Instantiate(characterAttackEffect,
             activeCharacters[currentTurn].transform.position,
             activeCharacters[currentTurn].transform.rotation);
+        anim.Play("Wraith Attacking");
+
     }
 
     private void DealDamageToCharacters(int selectedCharacterToAttack, int movePower)

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 835939331057808226}
   - component: {fileID: 835939331057808237}
   - component: {fileID: 835939331057808236}
+  - component: {fileID: 5900757473170623215}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Untagged
@@ -47,6 +48,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -98,6 +100,7 @@ MonoBehaviour:
   attacksAvailable:
   - Blue Fireball
   - Water Blade
+  charactersAnimator: {fileID: 5900757473170623215}
   characterName: Golem
   currentHP: 200
   maxHP: 200
@@ -110,3 +113,22 @@ MonoBehaviour:
   isDead: 0
   deathParticles: {fileID: 2740219943067552209, guid: 2adab11bd51832f4cbf8da9de4d2d6b9,
     type: 3}
+--- !u!95 &5900757473170623215
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835939331057808227}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 082cb81f3b845c14e816faeb05b551fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

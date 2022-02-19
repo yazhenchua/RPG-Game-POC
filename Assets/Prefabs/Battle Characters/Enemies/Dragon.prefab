@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8466618006045735577}
   - component: {fileID: 6567562092082252551}
   - component: {fileID: -8879914726076859283}
+  - component: {fileID: 535476108467016641}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   attacksAvailable: []
+  charactersAnimator: {fileID: 0}
   characterName: Dragon
   currentHP: 100
   maxHP: 100
@@ -108,3 +110,22 @@ MonoBehaviour:
   armorDefence: 100
   isDead: 0
   deathParticles: {fileID: 0}
+--- !u!95 &535476108467016641
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583326655681147760}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e133202b8cacf3c4c9e495de29c9160c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

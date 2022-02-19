@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +14,13 @@ public class BattleCharacters : MonoBehaviour
     public bool isDead;
 
     public ParticleSystem deathParticles;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        anim = GetComponent<Animator>();
+        Console.WriteLine(anim);
     }
 
     // Update is called once per frame
@@ -26,6 +29,19 @@ public class BattleCharacters : MonoBehaviour
         if (isDead)
         {
             FadeOut();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            anim.SetBool("Attack1", true);
+            anim.SetBool("Idling", false);
+            
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            anim.SetBool("Attack1", false);
+            anim.SetBool("Idling", true);
+            
         }
     }
 
@@ -68,5 +84,9 @@ public class BattleCharacters : MonoBehaviour
     {
         Instantiate(deathParticles, transform.position, transform.rotation);
         isDead = true;
+    }
+
+    public void IsAttacking()
+    {
     }
 }

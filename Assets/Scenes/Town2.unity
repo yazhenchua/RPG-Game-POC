@@ -2311,6 +2311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   attacksAvailable: []
+  charactersAnimator: {fileID: 0}
   characterName: 
   currentHP: 0
   maxHP: 0
@@ -6460,6 +6461,7 @@ MonoBehaviour:
   attacksAvailable:
   - Blue Fireball
   - Water Blade
+  charactersAnimator: {fileID: 0}
   characterName: Golem
   currentHP: 200
   maxHP: 200
@@ -6923,6 +6925,7 @@ MonoBehaviour:
   - {fileID: 1986513260}
   - {fileID: 1806559973}
   - {fileID: 1421408848}
+  anim: {fileID: 1252278304477029968}
   battleNotice: {fileID: 390674936}
 --- !u!1 &1252278304477029967
 GameObject:
@@ -6934,6 +6937,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1252278304477029964}
   - component: {fileID: 1252278304477029965}
+  - component: {fileID: 1252278304477029968}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -6941,6 +6945,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &1252278304477029968
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252278304477029967}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 178f85d05ab6c3a40809f4bda1cc8398, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1252278304509929241
 GameObject:
   m_ObjectHideFlags: 0
@@ -7539,6 +7562,7 @@ MonoBehaviour:
   - Blue Fireball
   - Slash
   - Water Blade
+  charactersAnimator: {fileID: 0}
   characterName: Minotaur
   currentHP: 200
   maxHP: 200
@@ -9979,6 +10003,7 @@ MonoBehaviour:
   attacksAvailable:
   - Blue Fireball
   - Water Blade
+  charactersAnimator: {fileID: 0}
   characterName: DevilMan
   currentHP: 0
   maxHP: 100
@@ -10399,6 +10424,7 @@ MonoBehaviour:
   attacksAvailable:
   - Blue Fireball
   - Water Blade
+  charactersAnimator: {fileID: 0}
   characterName: Wraith
   currentHP: 0
   maxHP: 50
@@ -19630,6 +19656,7 @@ MonoBehaviour:
   - Blue Fireball
   - Slash
   - Water Blade
+  charactersAnimator: {fileID: 0}
   characterName: Minotaur
   currentHP: 200
   maxHP: 200
@@ -19773,6 +19800,7 @@ MonoBehaviour:
   - Blue Fireball
   - Slash
   - Water Blade
+  charactersAnimator: {fileID: 0}
   characterName: Minotaur
   currentHP: 200
   maxHP: 200
@@ -19935,6 +19963,7 @@ MonoBehaviour:
   - Blue Fireball
   - Slash
   - Water Blade
+  charactersAnimator: {fileID: 0}
   characterName: Minotaur
   currentHP: 200
   maxHP: 200
