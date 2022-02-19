@@ -1,9 +1,13 @@
 ﻿//using System;
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class BattleManager : MonoBehaviour
 {
@@ -54,7 +58,9 @@ public class BattleManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            StartBattle(new string[] { "Minotaur", "Dragon", "Minotaur", "Minotaur" });
+            /*StartBattle(new string[] { "Minotaur", "Minotaur", "Minotaur", "Minotaur" });*/
+            StartBattle(new string[]{ "Minotaur", "Minotaur", "Minotaur", "Minotaur" }, 
+                new string[]{ "Wraith", "Wraith", "Wraith" , "Wraith" });
         }
 
         if (Input.GetKeyDown(KeyCode.N))
@@ -97,7 +103,21 @@ public class BattleManager : MonoBehaviour
             waitingForTurn = true;
             currentTurn = 0;
         }
+    }
 
+
+    public void StartBattle(string[] enemiesToSpawn, string[] playerToSpawn)
+    {
+        if (!isBattleActive)
+        {
+            SetUpBattle();
+            AddingPlayers(playerToSpawn);
+            AddingEnemies(enemiesToSpawn);
+            UpdatePlayerStats();
+
+            waitingForTurn = true;
+            currentTurn = 0;
+        }
     }
 
     private void AddingEnemies(string[] enemiesToSpawn)
@@ -151,8 +171,65 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    private void AddingPlayers(string[] playersToSpawn)
+    {
+
+        for (int i = 0; i < playersToSpawn.Length; i++)
+        {
+            if (playersToSpawn[i] != "")
+            {
+                //For each player character in Prefab,
+                //we check if it is the same as the string. if it is it will add
+                for (int j = 0; j < playersPrefabs.Length; j++)
+                {
+                    if (playersPrefabs[j].characterName == playersToSpawn[i])
+                    {
+                        BattleCharacters newPlayer = Instantiate(
+                            playersPrefabs[j],
+                            playersPositions[i].position,
+                            playersPositions[i].rotation,
+                            playersPositions[i]
+                        );
+
+                        activeCharacters.Add(newPlayer);
+                        ImportPlayerStats(newPlayer, i);
+                    }
+                    j++;
+                }
+            }
+            i++;
+        }
+    }
+    private void ImportPlayerStats(BattleCharacters player, int i)
+    {
+        try
+        {
+            //Sort through all the player stats, find the corresponsing one
+            var selectedCharacter = GameManager.instance.GetPlayerStats().
+                FirstOrDefault(x => x.PlayerName() == player.characterName);
+
+            activeCharacters[i].currentHP = selectedCharacter.currentHP;
+            activeCharacters[i].maxHP = selectedCharacter.maxHP;
+
+            activeCharacters[i].currentMana = selectedCharacter.currentMana;
+            activeCharacters[i].maxMana = selectedCharacter.maxMana;
+
+            activeCharacters[i].dexterity = selectedCharacter.dexterity;
+            activeCharacters[i].defence = selectedCharacter.defence;
+
+            activeCharacters[i].wpnPower = selectedCharacter.weaponPower;
+            activeCharacters[i].armorDefence = selectedCharacter.armorDefence;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+       
+    }
+
     private void ImportPlayerStats(int i)
     {
+
         PlayerStats player = GameManager.instance.GetPlayerStats()[i];
 
         activeCharacters[i].currentHP = player.currentHP;
@@ -192,6 +269,7 @@ public class BattleManager : MonoBehaviour
         UpdateBattle();
         UpdatePlayerStats();
         anim.SetTrigger("Attack1");
+        
     }
 
     private void UpdateBattle()
