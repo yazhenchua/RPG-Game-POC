@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2972834550678504741}
   - component: {fileID: 2972834550678504743}
   - component: {fileID: 2972834550678504742}
+  - component: {fileID: 5976000542333204463}
   m_Layer: 7
   m_Name: Projectile 1
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2972834550678504740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children:
   - {fileID: 7851573379085740652}
   m_Father: {fileID: 0}
@@ -65,11 +66,24 @@ CapsuleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.6210495, y: 0.2888741}
   m_Direction: 1
+--- !u!114 &5976000542333204463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972834550678504740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b2ee8d39280ba4f8c291a1674a89bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &4388722709360805015
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 4388722709360805015}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 2972834550678504741}
   m_RootOrder: 0
@@ -138,8 +152,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1560514155
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 48e613d4971717f4f8c6441fd4ca5c60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

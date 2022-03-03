@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Character
-  - Projectiles
+  - 
+  - 
   - Background
   - 
   - 
@@ -38,7 +38,7 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: background
+  - name: Background
     uniqueID: 277206307
     locked: 0
   - name: Walking Character
