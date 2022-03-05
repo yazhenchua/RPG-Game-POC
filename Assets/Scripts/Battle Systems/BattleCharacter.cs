@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class BattleCharacter : MonoBehaviour
 {
-    [SerializeField] int health = 50;
-    private Shooter shooter;
+    [SerializeField] int maxHP = 50;
     [SerializeField] ParticleSystem hitEffect;
+    [SerializeField] public int basicAtkDamage = 5;
+    [SerializeField] public float basicAtkSpeed = 0.5f;
+    [SerializeField] public int specialAtkDamage = 20;
+    [SerializeField] public GameObject basicAtkEffect;
+
+    private Shooter shooter;
     public bool isDead;
 
     private void Awake()
@@ -34,16 +39,17 @@ public class BattleCharacter : MonoBehaviour
         }
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
-        health -= damage;
-        if(health <= 0)
+        maxHP -= damage;
+        if(maxHP <= 0)
         {
             Destroy(gameObject);
+            isDead = true;
         }
     }
 
-    void PlayerHitEffect()
+    public void PlayerHitEffect()
     {
         // Hit effect should be based on opponent's attack
         // Currently based on own attack
