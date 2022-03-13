@@ -10,6 +10,7 @@ public class BattleCharacter : MonoBehaviour
     [SerializeField] public float basicAtkSpeed = 0.5f;
     [SerializeField] public int specialAtkDamage = 20;
     [SerializeField] public GameObject basicAtkEffect;
+    [SerializeField] public GameObject specialAtkEffect;
 
     private Shooter shooter;
     public bool isDead;

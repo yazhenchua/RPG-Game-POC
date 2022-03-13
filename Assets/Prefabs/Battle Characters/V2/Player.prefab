@@ -170,6 +170,8 @@ MonoBehaviour:
   basicAtkDamage: 5
   basicAtkSpeed: 0.5
   specialAtkDamage: 20
-  basicAtkEffect: {fileID: 7975186820163969487, guid: 38ed9a9f2b854a8418992054b813cf55,
+  basicAtkEffect: {fileID: 6995670127235012729, guid: 38ed9a9f2b854a8418992054b813cf55,
+    type: 3}
+  specialAtkEffect: {fileID: 3849378644669725893, guid: dd590d23bc9333e44a76e2d144b1f3dc,
     type: 3}
   isDead: 0

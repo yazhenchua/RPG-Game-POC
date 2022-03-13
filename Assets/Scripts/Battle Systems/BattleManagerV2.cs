@@ -25,6 +25,10 @@ public class BattleManagerV2 : MonoBehaviour
         {
             int damage = activePlayers[0].specialAtkDamage;
             activeEnemies[0].TakeDamage(damage);
+            Animation specialAtkEffectAnimation;
+            GameObject obj = Instantiate(activePlayers[0].specialAtkEffect, activeEnemies[0].transform.position, Quaternion.identity) as GameObject;
+            specialAtkEffectAnimation = obj.GetComponent<Animation>();
+            Destroy(obj, obj.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         }
     }
 
@@ -56,6 +60,7 @@ public class BattleManagerV2 : MonoBehaviour
             Animation basicAtkEffectAnimation;
             GameObject obj = Instantiate(activePlayers[0].basicAtkEffect, activeEnemies[0].transform.position, Quaternion.identity) as GameObject;
             basicAtkEffectAnimation = obj.GetComponent<Animation>();
+            Destroy(obj, obj.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
             yield return new WaitForSeconds(attackSpeed);
         }
     }
