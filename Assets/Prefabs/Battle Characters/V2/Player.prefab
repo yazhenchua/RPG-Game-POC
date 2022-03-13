@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0500bbe6ea2fa1b4d8877256641f9edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 50
-  basicAtkDamage: 5
+  maxHP: 100
+  basicAtkDamage: 10
   basicAtkSpeed: 0.5
   specialAtkDamage: 30
   basicAtkEffect: {fileID: 6995670127235012729, guid: 38ed9a9f2b854a8418992054b813cf55,

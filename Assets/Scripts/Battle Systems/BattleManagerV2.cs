@@ -5,23 +5,49 @@ using UnityEngine;
 public class BattleManagerV2 : MonoBehaviour
 {
     [SerializeField] BattleCharacter[] players, enemies;
-    List<BattleCharacter> activePlayers = new List<BattleCharacter>();
-    List<BattleCharacter> activeEnemies = new List<BattleCharacter>();
+    [SerializeField] List<BattleCharacter> activePlayers = new List<BattleCharacter>();
+    [SerializeField] List<BattleCharacter> activeEnemies = new List<BattleCharacter>();
+
+    List<Vector2> playerPositions = new List<Vector2>() { new Vector2(-2, 0), new Vector2(-4, 2), new Vector2(-5, -2) };
+    List<Vector2> enemyPositions = new List<Vector2>() { new Vector2(2, 0), new Vector2(4, 2), new Vector2(5, -2) };
+
+    bool playerCouroutineStarted = false;
+    bool enemyCouroutineStarted = false;
+    bool gameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
         AddPlayers();
         AddEnemies();
-        StartCoroutine(AttackContinuously(activePlayers[0],activeEnemies[0]));
-        StartCoroutine(AttackContinuously(activeEnemies[0], activePlayers[0]));
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckBattleStatus();
+        if(!gameOver) {
+            CheckBattleStatus();
+        }
 
-        // Use special attack
+        foreach (var player in activePlayers)
+        {
+            if (!playerCouroutineStarted && activeEnemies.Count != 0)
+            {
+                StartCoroutine(AttackContinuously(player, activeEnemies[0]));
+                playerCouroutineStarted = true;
+            }
+        }
+        foreach (var enemy in activeEnemies)
+        {
+            if (!enemyCouroutineStarted && activePlayers.Count != 0)
+            {
+                StartCoroutine(AttackContinuously(enemy, activePlayers[0]));
+                enemyCouroutineStarted = true;
+            }
+        }
+
+        // Use special attack on enemy 1
         if (Input.GetKeyDown(KeyCode.Q))
         {
             int damage = activePlayers[0].specialAtkDamage;
@@ -31,13 +57,35 @@ public class BattleManagerV2 : MonoBehaviour
             specialAtkEffectAnimation = obj.GetComponent<Animation>();
             Destroy(obj, obj.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         }
+
+        // Use special attack on enemy 2
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            int damage = activePlayers[0].specialAtkDamage;
+            activeEnemies[1].TakeDamage(damage);
+            Animation specialAtkEffectAnimation;
+            GameObject obj = Instantiate(activePlayers[0].specialAtkEffect, activeEnemies[1].transform.position, Quaternion.identity) as GameObject;
+            specialAtkEffectAnimation = obj.GetComponent<Animation>();
+            Destroy(obj, obj.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        }
+
+        // Use special attack on enemy 3
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            int damage = activePlayers[0].specialAtkDamage;
+            activeEnemies[2].TakeDamage(damage);
+            Animation specialAtkEffectAnimation;
+            GameObject obj = Instantiate(activePlayers[0].specialAtkEffect, activeEnemies[2].transform.position, Quaternion.identity) as GameObject;
+            specialAtkEffectAnimation = obj.GetComponent<Animation>();
+            Destroy(obj, obj.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        }
     }
 
     private void AddPlayers()  
     {
         for(int i = 0; i < players.Length; i++)
         {
-            BattleCharacter instance = Instantiate(players[i], new Vector2(-2*i-2,0), Quaternion.identity);
+            BattleCharacter instance = Instantiate(players[i], playerPositions[i], Quaternion.identity);
             activePlayers.Add(instance);
         }
     }
@@ -45,12 +93,11 @@ public class BattleManagerV2 : MonoBehaviour
     {
         for(int i =0; i < enemies.Length; i++)
         {
-            BattleCharacter instance = Instantiate(enemies[i], new Vector2(2*i+2, 0), Quaternion.identity);
+            BattleCharacter instance = Instantiate(enemies[i], enemyPositions[i], Quaternion.identity);
             activeEnemies.Add(instance);
         }
     }
 
-    // Method is now hardcoded for player 1 to hit enemy 1
     IEnumerator AttackContinuously(BattleCharacter attacker, BattleCharacter target)
     {
         int damage = attacker.basicAtkDamage;
@@ -74,6 +121,8 @@ public class BattleManagerV2 : MonoBehaviour
             if(activePlayers[i].isDead)
             {
                 activePlayers.Remove(activePlayers[i]);
+                enemyCouroutineStarted = false;
+                playerCouroutineStarted = false;
             }
         }
         for(int i = 0; i < activeEnemies.Count; i++)
@@ -81,15 +130,19 @@ public class BattleManagerV2 : MonoBehaviour
             if(activeEnemies[i].isDead)
             {
                 activeEnemies.Remove(activeEnemies[i]);
+                enemyCouroutineStarted = false;
+                playerCouroutineStarted = false;
             }
         }
         if(activePlayers.Count.Equals(0))
         {
             Debug.Log("LOST");
+            gameOver = true;
         }
         if (activeEnemies.Count.Equals(0))
         {
             Debug.Log("WON");
+            gameOver = true;
         }
     }
 

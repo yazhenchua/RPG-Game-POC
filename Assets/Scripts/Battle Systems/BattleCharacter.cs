@@ -43,8 +43,8 @@ public class BattleCharacter : MonoBehaviour
         maxHP -= damage;
         if(maxHP <= 0)
         {
-            Destroy(gameObject);
             isDead = true;
+            Destroy(gameObject);
         }
     }
 }
