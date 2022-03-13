@@ -166,10 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 50
-  hitEffect: {fileID: 0}
   basicAtkDamage: 5
   basicAtkSpeed: 0.5
-  specialAtkDamage: 20
+  specialAtkDamage: 30
   basicAtkEffect: {fileID: 6995670127235012729, guid: 38ed9a9f2b854a8418992054b813cf55,
     type: 3}
   specialAtkEffect: {fileID: 3849378644669725893, guid: dd590d23bc9333e44a76e2d144b1f3dc,

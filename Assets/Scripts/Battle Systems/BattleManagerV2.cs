@@ -12,7 +12,8 @@ public class BattleManagerV2 : MonoBehaviour
     {
         AddPlayers();
         AddEnemies();
-        StartCoroutine(AttackContinuously());
+        StartCoroutine(AttackContinuously(activePlayers[0],activeEnemies[0]));
+        StartCoroutine(AttackContinuously(activeEnemies[0], activePlayers[0]));
     }
 
     // Update is called once per frame
@@ -50,15 +51,15 @@ public class BattleManagerV2 : MonoBehaviour
     }
 
     // Method is now hardcoded for player 1 to hit enemy 1
-    IEnumerator AttackContinuously()
+    IEnumerator AttackContinuously(BattleCharacter attacker, BattleCharacter target)
     {
-        int damage = activePlayers[0].basicAtkDamage;
-        float attackSpeed = activePlayers[0].basicAtkSpeed;
-        while (true)
+        int damage = attacker.basicAtkDamage;
+        float attackSpeed = attacker.basicAtkSpeed;
+        while (true && !attacker.isDead)
         {
-            activeEnemies[0].TakeDamage(damage);
+            target.TakeDamage(damage);
             Animation basicAtkEffectAnimation;
-            GameObject obj = Instantiate(activePlayers[0].basicAtkEffect, activeEnemies[0].transform.position, Quaternion.identity) as GameObject;
+            GameObject obj = Instantiate(attacker.basicAtkEffect, target.transform.position, Quaternion.identity) as GameObject;
             basicAtkEffectAnimation = obj.GetComponent<Animation>();
             Destroy(obj, obj.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
             yield return new WaitForSeconds(attackSpeed);
