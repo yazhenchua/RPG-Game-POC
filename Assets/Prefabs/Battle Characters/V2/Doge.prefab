@@ -48,12 +48,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 50
   basicAtkDamage: 10
-  basicAtkSpeed: 2
-  specialAtkDamage: 0
-  basicAtkEffect: {fileID: 0}
-  specialAtkEffect: {fileID: 0}
+  basicAtkSpeed: 5
+  specialAtkDamage: 100
   basicAtkAnim: Doge_Attack
+  specialAtkAnim: Doge_Attack_Special
   isDead: 0
+  animator: {fileID: 0}
 --- !u!95 &2023758550304223240
 Animator:
   serializedVersion: 3

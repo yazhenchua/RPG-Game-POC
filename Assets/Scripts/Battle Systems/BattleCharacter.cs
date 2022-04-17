@@ -10,7 +10,8 @@ public class BattleCharacter : MonoBehaviour
     [SerializeField] public int specialAtkDamage;
     //[SerializeField] public GameObject basicAtkEffect;
     //[SerializeField] public GameObject specialAtkEffect;
-    [SerializeField] private string basicAtkAnim;
+    [SerializeField] public string basicAtkAnim;
+    [SerializeField] private string specialAtkAnim;
 
     public bool isDead;
     public Animator animator;
@@ -40,5 +41,12 @@ public class BattleCharacter : MonoBehaviour
             StartCoroutine(target.TakeDamage(basicAtkDamage, animator.GetCurrentAnimatorStateInfo(0).length));
             yield return new WaitForSeconds(basicAtkSpeed);
         }
+    }
+
+    public IEnumerator SpecialAttack(BattleCharacter target, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        animator.Play(specialAtkAnim);
+        StartCoroutine(target.TakeDamage(specialAtkDamage, animator.GetCurrentAnimatorStateInfo(0).length));
     }
 }
