@@ -4,47 +4,41 @@ using UnityEngine;
 
 public class BattleCharacter : MonoBehaviour
 {
-    [SerializeField] int maxHP = 50;
-    [SerializeField] public int basicAtkDamage = 5;
-    [SerializeField] public float basicAtkSpeed = 0.5f;
-    [SerializeField] public int specialAtkDamage = 20;
-    [SerializeField] public GameObject basicAtkEffect;
-    [SerializeField] public GameObject specialAtkEffect;
+    [SerializeField] int maxHP;
+    [SerializeField] public int basicAtkDamage;
+    [SerializeField] public float basicAtkSpeed;
+    [SerializeField] public int specialAtkDamage;
+    //[SerializeField] public GameObject basicAtkEffect;
+    //[SerializeField] public GameObject specialAtkEffect;
+    [SerializeField] private string basicAtkAnim;
 
-    private Shooter shooter;
     public bool isDead;
+    public Animator animator;
 
-    private void Awake()
+    public void Start()
     {
-        shooter = GetComponent<Shooter>();
+        animator = GetComponent<Animator>();
     }
 
-    private void Start()
+    // Take damage at the end of enemy's attack animation
+    public IEnumerator TakeDamage(int damage, float delay)
     {
-        if (shooter != null)
-        {
-            shooter.isFiring = true;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        DamageDealer damageDealer = collision.GetComponent<DamageDealer>();
-
-        if(damageDealer != null)
-        {
-            TakeDamage(damageDealer.getDamage());
-            damageDealer.Hit();
-        }
-    }
-
-    public void TakeDamage(int damage)
-    {
+        yield return new WaitForSeconds(delay);
         maxHP -= damage;
         if(maxHP <= 0)
         {
             isDead = true;
             Destroy(gameObject);
+        }
+    }
+
+    public IEnumerator AttackContinuously(BattleCharacter target)
+    {
+        while (true && !isDead)
+        {
+            animator.Play(basicAtkAnim);
+            StartCoroutine(target.TakeDamage(basicAtkDamage, animator.GetCurrentAnimatorStateInfo(0).length));
+            yield return new WaitForSeconds(basicAtkSpeed);
         }
     }
 }
