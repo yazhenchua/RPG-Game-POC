@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleCharacter : MonoBehaviour
 {
@@ -15,18 +16,27 @@ public class BattleCharacter : MonoBehaviour
 
     public bool isDead;
     public Animator animator;
+    public int currentHP;
+    public HealthBar healthBar;
+    public GameObject damageText;
 
     public void Start()
     {
         animator = GetComponent<Animator>();
+        currentHP = maxHP;
+        healthBar.SetMaxHP(maxHP);
     }
 
     // Take damage at the end of enemy's attack animation
     public IEnumerator TakeDamage(int damage, float delay)
     {
         yield return new WaitForSeconds(delay);
-        maxHP -= damage;
-        if(maxHP <= 0)
+        
+        currentHP -= damage;
+        healthBar.SetHP(currentHP);
+        DamageIndicator damageIndicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>();
+        damageIndicator.SetText(damage);
+        if(currentHP <= 0)
         {
             isDead = true;
             Destroy(gameObject);

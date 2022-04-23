@@ -8,14 +8,15 @@ public class BattleManagerV2 : MonoBehaviour
     [SerializeField] List<BattleCharacter> activePlayers = new List<BattleCharacter>();
     [SerializeField] List<BattleCharacter> activeEnemies = new List<BattleCharacter>();
 
-    List<Vector2> playerPositions = new List<Vector2>() { new Vector2(-2, -1), new Vector2(-4, -1), new Vector2(-5, -1) };
-    List<Vector2> enemyPositions = new List<Vector2>() { new Vector2(2, -1), new Vector2(4, -1), new Vector2(5, -1) };
+    List<Vector2> playerPositions = new List<Vector2>() { new Vector2(-2, 1), new Vector2(-4, -1), new Vector2(-5, -1) };
+    List<Vector2> enemyPositions = new List<Vector2>() { new Vector2(2, 1), new Vector2(4, -1), new Vector2(5, -1) };
 
     bool playerCouroutineStarted = false;
     bool enemyCouroutineStarted = false;
     bool gameOver = false;
 
     // Start is called before the first frame update
+
     void Start()
     {
         AddPlayers();
